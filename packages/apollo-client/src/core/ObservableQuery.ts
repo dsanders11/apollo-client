@@ -604,9 +604,15 @@ export class ObservableQuery<
 
     this.observers.push(observer);
 
+    const { fetchPolicy } = this.options;
+    const isNetworkFetchPolicy =
+      fetchPolicy === 'network-only' || fetchPolicy === 'no-cache';
+
     // Deliver initial result
-    if (observer.next && this.lastResult) observer.next(this.lastResult);
-    if (observer.error && this.lastError) observer.error(this.lastError);
+    if (!isNetworkFetchPolicy) {
+      if (observer.next && this.lastResult) observer.next(this.lastResult);
+      if (observer.error && this.lastError) observer.error(this.lastError);
+    }
 
     // setup the query if it hasn't been done before
     if (this.observers.length === 1) this.setUpQuery();

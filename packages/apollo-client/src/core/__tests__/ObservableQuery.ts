@@ -1605,7 +1605,7 @@ describe('ObservableQuery', () => {
             stale: false,
           });
 
-          if (handleCount === 2) {
+          if (handleCount === 1) {
             expect(stripSymbols(subResult)).toEqual({
               data: dataTwo,
               loading: false,
@@ -1656,7 +1656,7 @@ describe('ObservableQuery', () => {
             stale: false,
           });
 
-          if (handleCount === 2) {
+          if (handleCount === 1) {
             expect(stripSymbols(subResult)).toEqual({
               data: dataTwo,
               loading: false,
